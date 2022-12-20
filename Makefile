@@ -7,15 +7,15 @@ build:
 
 .PHONY: stream
 stream: build
-	substreams run -e $(ENDPOINT) substreams.yaml map_transfers -s 12292922 -t +10
+	./substreams run -e $(ENDPOINT) substreams.yaml map_pools_created -s 16_225_251 -t +301
 
 .PHONY: codegen
 codegen:
-	substreams protogen ./substreams.yaml --exclude-paths="sf/ethereum,sf/substreams,google"
+	./substreams protogen ./substreams.yaml --exclude-paths="sf/substreams,google"
 
 .PHONE: package
 package: build
-	substreams pack -o substreams.spkg substreams.yaml
+	./substreams pack -o substreams.spkg substreams.yaml
 
 .PHONE: deploy_local
 deploy_local: package
